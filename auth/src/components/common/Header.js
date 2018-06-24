@@ -1,10 +1,9 @@
 import React from 'react';
 import {
     Text,
-    View
+    View,
 } from 'react-native';
 
-// Start Component
 const Header = (props) => {
     const {textStyle, viewStyle} = styles;
     return (
@@ -31,5 +30,5 @@ const styles = {
         position: 'relative'
     }
 };
-// Make component available to other parts of the app
-export default Header;
+
+export {Header};
