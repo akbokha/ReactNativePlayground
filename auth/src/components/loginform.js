@@ -1,22 +1,21 @@
 import React, {Component} from 'react';
-import {
-    View
-} from 'react-native';
+import {TextInput} from 'react-native';
 import {Section, SectionHolder, Button} from "./common";
 
 class LoginForm extends Component {
     render() {
         return (
             <SectionHolder>
-                {/*<Section>*/}
-
-                {/*</Section>*/}
-                {/*<Section>*/}
-
-                {/*</Section>*/}
-                {/*<Section>*/}
-                {/*<Button>Log in</Button>*/}
-                {/*</Section>*/}
+                <Section>
+                    <TextInput style={ { height: 20, width: 100 } }/>
+                </Section>
+                <Section>
+                </Section>
+                <Section>
+                    <Button>
+                        Log in
+                    </Button>
+                </Section>
             </SectionHolder>
 
         );

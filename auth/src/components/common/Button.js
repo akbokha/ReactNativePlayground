@@ -5,13 +5,15 @@ import {
 } from 'react-native';
 
 const Button = ({onPressMethod, children}) => {
-    const {buttonStyle, textStyle} = styles;
+    const {textStyle, buttonStyle} = styles;
     return (
         <TouchableOpacity
             style={buttonStyle}
             onPress={onPressMethod}
         >
-            <Text style={textStyle}>{children}</Text>
+            <Text style={textStyle}>
+                {children}
+            </Text>
         </TouchableOpacity>
     );
 };
@@ -37,4 +39,4 @@ const styles = {
     }
 };
 
-export default Button;
+export {Button};
