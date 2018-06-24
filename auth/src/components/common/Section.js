@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 const Section = (props) => {
-    const {containerStyle} = styles;
+    const { containerStyle } = styles;
     return (
         <View style={containerStyle}>
             {props.children}
@@ -24,4 +24,4 @@ const styles = {
     }
 };
 
-export {Section};
+export { Section };

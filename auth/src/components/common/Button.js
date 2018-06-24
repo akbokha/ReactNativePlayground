@@ -4,8 +4,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const Button = ({onPressMethod, children}) => {
-    const {textStyle, buttonStyle} = styles;
+const Button = ({ onPressMethod, children }) => {
+    const { textStyle, buttonStyle } = styles;
     return (
         <TouchableOpacity
             style={buttonStyle}
@@ -39,4 +39,4 @@ const styles = {
     }
 };
 
-export {Button};
+export { Button };

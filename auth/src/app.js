@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View
 } from 'react-native';
 import LoginForm from './components/loginform';
-import {Header} from "./components/common";
+import { Header } from "./components/common";
 import firebase_config from "./components/config";
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <Header headerText={"Simple Authorization"}/>
                 <LoginForm/>
             </View>
