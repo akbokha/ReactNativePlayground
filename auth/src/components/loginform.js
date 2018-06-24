@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
-import { TextInput } from 'react-native';
-import { Section, SectionHolder, Button } from "./common";
+import { Section, SectionHolder, Button, InputBox } from "./common";
 
 class LoginForm extends Component {
+    state = {
+        email: '',
+        pwd: ''
+    };
+
     render() {
         return (
             <SectionHolder>
                 <Section>
-                    <TextInput style={{ height: 20, width: 100 }}/>
+                    <InputBox
+                        label={"E-mail"}
+                        placeholder={"address@host.com"}
+                        value={this.state.email}
+                        onChangeText={text => this.setState({ email: text })}
+                    />
                 </Section>
                 <Section>
+                    <InputBox
+                        label={"Password"}
+                        placeholder={""}
+                        value={this.state.pwd}
+                        onChangeText={text => this.setState({ pwd: text })}
+                        secureTextEntry={true}
+                    />
                 </Section>
                 <Section>
                     <Button>
