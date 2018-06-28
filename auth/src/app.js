@@ -19,7 +19,7 @@ class App extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Header headerText={"Simple Authorization"}/>
+                <Header headerText={"Simple Authentication"}/>
                 <LoginForm/>
             </View>
         );
