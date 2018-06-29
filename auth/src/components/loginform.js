@@ -1,10 +1,49 @@
 import React, { Component } from 'react';
-import { Section, SectionHolder, Button, InputBox } from "./common";
+import {
+    Text
+} from 'react-native';
+import firebase from 'firebase';
+import { Section, SectionHolder, Button, InputBox, Spinner } from "./common";
 
 class LoginForm extends Component {
-    state = {
-        email: '',
-        pwd: ''
+
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            pwd: '',
+            error: '',
+            loading: false
+        };
+        this.onButtonPress = this.onButtonPress.bind(this);
+    }
+
+    renderButton() {
+        if (this.state.loading) {
+            return <Spinner size="small"/>
+        } else {
+            return (
+                <Button onPressMethod={this.onButtonPress}>
+                    Log in
+                </Button>
+            );
+        }
+    }
+
+    onButtonPress() {
+        this.setState({
+            error: '',
+            loading: true
+        });
+
+        const { email, pwd } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, pwd)
+            .catch(() => {
+                firebase.auth().createUserWithEmailAndPassword(email, pwd)
+                    .catch(e => {
+                        this.setState({ error: e.message });
+                    });
+            });
     };
 
     render() {
@@ -27,15 +66,27 @@ class LoginForm extends Component {
                         secureTextEntry={true}
                     />
                 </Section>
+
+                <Text style={styles.errorTextStyle}>
+                    {this.state.error}
+                </Text>
+
                 <Section>
-                    <Button>
-                        Log in
-                    </Button>
+                    {this.renderButton()}
                 </Section>
             </SectionHolder>
 
         );
     }
 }
+
+const styles = {
+    errorTextStyle: {
+        fontSize: 16,
+        alignSelf: 'center',
+        color: 'red'
+    }
+};
+
 
 export default LoginForm;
