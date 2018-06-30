@@ -26,7 +26,7 @@ class LoginForm extends Component {
         } else {
             return (
                 <Button onPressMethod={this.onButtonPress}>
-                    Log in
+                    Log In
                 </Button>
             );
         }
