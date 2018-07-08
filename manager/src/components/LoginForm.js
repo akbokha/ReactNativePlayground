@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {
-  Text
+  Text,
+  View
 } from 'react-native'
-import firebase from 'firebase'
-import { Card, CardSection, Input, Button } from "./common"
+import { Card, CardSection, Input, Button, Spinner } from "./common"
 import { connect } from 'react-redux'
 import { emailChanged, pwdChanged, loginUser } from "../actions";
 
@@ -14,7 +14,8 @@ class LoginForm extends Component {
     this.onEmailChange = this.onEmailChange.bind(this)
     this.onPwdChange = this.onPwdChange.bind(this)
     this.onButtonPress = this.onButtonPress.bind(this)
-
+    this.renderError = this.renderError.bind(this)
+    this.renderButton = this.renderButton.bind(this)
   }
 
   onEmailChange(text) {
@@ -28,6 +29,29 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, pwd } = this.props
     this.props.loginUser({ email, pwd })
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return (<Spinner size="large"/>)
+    } else {
+      return (
+        <Button onPress={this.onButtonPress}>
+          Login
+        </Button>)
+    }
+  }
+
+  renderError() {
+    if (this.props.error) {
+      return (
+        <View style={{ backgroundColor: 'white' }}>
+          <Text style={styles.errorTextStyle}>
+            {this.props.error}
+          </Text>
+        </View>
+      )
+    }
   }
 
   render() {
@@ -54,22 +78,29 @@ class LoginForm extends Component {
             value={this.props.pwd}
           />
         </CardSection>
+        {this.renderError()}
         <CardSection>
-          <Button
-            onPress={this.onButtonPress}
-          >
-            Login
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
   }
 }
 
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+}
+
 const mapStateToProps = state => {
   return {
     email: state.auth.email,
-    pwd: state.auth.pwd
+    pwd: state.auth.pwd,
+    error: state.auth.error,
+    loading: state.auth.loading
   }
 }
 
