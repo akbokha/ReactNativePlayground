@@ -109,4 +109,4 @@ fabric.properties
 .idea/httpRequests
 
 # config
-auth/src/components/config\.js
+**/config\.js
